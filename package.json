@@ -1,7 +1,7 @@
 {
-  "name": "rap-time-app",
+  "name": "rat-time",
   "main": "expo-router/entry",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -42,7 +42,6 @@
     "eslint-config-expo": "~10.0.0",
     "typescript": "~5.9.2"
   },
-  "private": true,
   "packageManager": "yarn@4.10.3",
   "engines": {
     "node": "^24.0.0"

@@ -8260,9 +8260,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rap-time-app@workspace:.":
+"rat-time@workspace:.":
   version: 0.0.0-use.local
-  resolution: "rap-time-app@workspace:."
+  resolution: "rat-time@workspace:."
   dependencies:
     "@expo/vector-icons": "npm:^15.0.2"
     "@react-navigation/bottom-tabs": "npm:^7.4.0"
