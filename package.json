@@ -1,6 +1,6 @@
 {
   "name": "rat-time",
-  "main": "expo-router/entry",
+  "main": "entry.js",
   "version": "0.0.1",
   "scripts": {
     "start": "expo start",
