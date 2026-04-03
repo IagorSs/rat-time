@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "RatTimeApp",
-    "slug": "app-time-app",
-    "version": "1.0.0",
-    "orientation": "portrait",
+    "name": "Rat Time",
+    "slug": "rat-time-app",
+    "version": "0.0.1",
+    "orientation": "default",
     "icon": "./assets/images/icon.png",
-    "scheme": "tempexpoapp",
+    "scheme": "ratTime",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
@@ -13,13 +13,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/images/android-icon-foreground.png",
-        "backgroundImage": "./assets/images/android-icon-background.png",
-        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+        "backgroundColor": "#FCDEDE",
+        "foregroundImage": "./assets/images/icon.png",
+        "monochromeImage": "./assets/images/icon-monochrome.png"
       },
       "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "com.iagorss.rattime.app"
     },
     "web": {
       "output": "static",
@@ -31,6 +31,12 @@
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "5b13f35b-95bc-4aea-aee2-1f7887404506"
+      }
     }
   }
 }
