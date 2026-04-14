@@ -5,6 +5,7 @@
   "scripts": {
     "start": "yarn install && expo start",
     "test": "jest",
+    "test:watch": "jest --watch",
     "android:build:dev": "eas build -p android --profile preview",
     "lint": "expo lint",
     "eas-build-pre-install": "corepack enable"
