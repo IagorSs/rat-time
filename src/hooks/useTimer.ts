@@ -1,13 +1,23 @@
-import { ObservableTime } from "@/classes"
-import { useEffect, useState } from "react"
+import { ObservableTime } from "@/classes";
+import { useEffect, useState } from "react";
+import { useAudioPlayer } from 'expo-audio';
 
 const time = new ObservableTime();
+
+const beepSource = require('assets/sounds/beep.mp3');
 
 // TODO test
 export default () => {
     const [minutes, setMinutes] = useState(time.getMinutes());
     const [seconds, setSeconds] = useState(time.getSeconds());
     const [isTimerRunning, setIsTimerRunning] = useState(false);
+
+    const beepPlayer = useAudioPlayer(beepSource);
+
+    const playBeep = () => {
+        beepPlayer.seekTo(0);
+        beepPlayer.play();
+    }
 
     useEffect(() => {
         time.addMinutesSub(setMinutes);
@@ -17,8 +27,7 @@ export default () => {
     useEffect(() => {
         if (isTimerRunning) {
             if (minutes === "00" && seconds === "00") {
-                // TODO add beep
-                alert("IHU")
+                playBeep();
                 setIsTimerRunning(false);
             }
             else {
