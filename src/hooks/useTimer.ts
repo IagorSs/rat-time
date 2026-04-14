@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import useSingleBeep from "./useSingleBeep";
 
 const time = new ObservableTime();
+let timerToReset: number = 0;
 
 // TODO test
 export default () => {
@@ -19,9 +20,10 @@ export default () => {
 
     useEffect(() => {
         if (isTimerRunning) {
-            if (minutes === "00" && seconds === "00") {
+            if (time.getEntireTimeInSeconds() === 0) {
                 playBeep();
                 setIsTimerRunning(false);
+                time.addTime(timerToReset);
             }
             else {
                 setTimeout(() => time.addTime(-1), 1000)
@@ -39,6 +41,7 @@ export default () => {
         subSecond: () => time.addTime(-1),
         startTimer: () => {
             setIsTimerRunning(true);
+            timerToReset = time.getEntireTimeInSeconds();
         }
     }
 }
