@@ -52,4 +52,8 @@ export default class Time {
             0
         )
     }
+
+    public getEntireTimeInSeconds(): number {
+        return this.timeInSeconds;
+    }
 }
