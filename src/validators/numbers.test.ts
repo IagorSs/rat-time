@@ -2,6 +2,17 @@ import { nonNegative, integer } from "./numbers";
 
 describe("integer", () => {
     it.each([
+        "29",
+        null,
+        undefined,
+        false,
+        {},
+    ])("should throw error on invalid type (%s)", (num) => {
+        // TODO specify error
+        expect(() => integer(num)).toThrow();
+    });
+
+    it.each([
         -39399.34,
         -0.000001,
         1.1,
@@ -23,6 +34,17 @@ describe("integer", () => {
 })
 
 describe("nonNegative", () => {
+    it.each([
+        "29",
+        null,
+        undefined,
+        false,
+        {},
+    ])("should throw error on invalid type (%s)", (num) => {
+        // TODO specify error
+        expect(() => nonNegative(num)).toThrow();
+    });
+
     it.each([
         -39399.34,
         -0.000001,
