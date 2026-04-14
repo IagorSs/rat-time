@@ -1,10 +1,8 @@
 import { ObservableTime } from "@/classes";
 import { useEffect, useState } from "react";
-import { useAudioPlayer } from 'expo-audio';
+import useSingleBeep from "./useSingleBeep";
 
 const time = new ObservableTime();
-
-const beepSource = require('assets/sounds/beep.mp3');
 
 // TODO test
 export default () => {
@@ -12,12 +10,7 @@ export default () => {
     const [seconds, setSeconds] = useState(time.getSeconds());
     const [isTimerRunning, setIsTimerRunning] = useState(false);
 
-    const beepPlayer = useAudioPlayer(beepSource);
-
-    const playBeep = () => {
-        beepPlayer.seekTo(0);
-        beepPlayer.play();
-    }
+    const { playBeep } = useSingleBeep();
 
     useEffect(() => {
         time.addMinutesSub(setMinutes);
