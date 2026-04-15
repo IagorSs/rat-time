@@ -51,10 +51,9 @@ export default function Index() {
                     />
                 </View>
 
-                <FilledButton
+                {!isTimerRunning && <FilledButton
                     value="START"
                     onClick={startTimer}
-                    disabled={isTimerRunning}
                     styleOverrides={{
                         borderRadius: 6,
                         paddingHorizontal: 16,
@@ -63,7 +62,7 @@ export default function Index() {
                     textStyleOverrides={{
                         fontSize: 40
                     }}
-                />
+                />}
             </View>
         );
 }
