@@ -10,50 +10,52 @@ type TimeDisplayProps = {
     disabled?: boolean;
 }
 
-export default ({
+export default function TimeDisplay({
     value, onPlusClick, onMinusClick, disabled
-}: TimeDisplayProps) => (
-    <View
-        style={{
-            marginHorizontal: 2,
-            marginVertical: 8
-        }}
-    >
-        <FilledButton
-            value="+"
-            onClick={onPlusClick}
-            disabled={disabled}
-            styleOverrides={{
-                borderTopLeftRadius: 8,
-                borderTopRightRadius: 8,
+}: TimeDisplayProps) {
+    return (
+        <View
+            style={{
+                marginHorizontal: 2,
+                marginVertical: 8
             }}
-            textStyleOverrides={{
-                fontSize: 60
-            }}
-        />
+        >
+            <FilledButton
+                value="+"
+                onClick={onPlusClick}
+                disabled={disabled}
+                styleOverrides={{
+                    borderTopLeftRadius: 8,
+                    borderTopRightRadius: 8,
+                }}
+                textStyleOverrides={{
+                    fontSize: 60
+                }}
+            />
 
-        <Title
-            value={value}
-            styleOverrides={{
-                borderLeftWidth: 2,
-                borderRightWidth: 2,
-                borderColor: disabled ? ColorsConstants.red.light : ColorsConstants.red.normal,
-                paddingHorizontal: 8,
-                fontSize: 120
-            }}
-        />
+            <Title
+                value={value}
+                styleOverrides={{
+                    borderLeftWidth: 2,
+                    borderRightWidth: 2,
+                    borderColor: disabled ? ColorsConstants.red.light : ColorsConstants.red.normal,
+                    paddingHorizontal: 8,
+                    fontSize: 120
+                }}
+            />
 
-        <FilledButton
-            value="-"
-            onClick={onMinusClick}
-            disabled={disabled}
-            styleOverrides={{
-                borderBottomLeftRadius: 8,
-                borderBottomRightRadius: 8,
-            }}
-            textStyleOverrides={{
-                fontSize: 60
-            }}
-        />
-    </View>
-)
+            <FilledButton
+                value="-"
+                onClick={onMinusClick}
+                disabled={disabled}
+                styleOverrides={{
+                    borderBottomLeftRadius: 8,
+                    borderBottomRightRadius: 8,
+                }}
+                textStyleOverrides={{
+                    fontSize: 60
+                }}
+            />
+        </View>
+    );
+}

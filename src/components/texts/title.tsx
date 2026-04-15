@@ -8,6 +8,6 @@ type TitleProps = {
     styleOverrides: TextStyle
 }
 
-export default ({ value, styleOverrides }: TitleProps) => {
+export default function Title({ value, styleOverrides }: TitleProps) {
     return <Text style={{...TextsConstants.title, ...styleOverrides}}>{value}</Text>;
 }

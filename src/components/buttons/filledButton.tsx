@@ -19,26 +19,28 @@ type FilledButtonProps = {
     }
 }
 
-export default ({
+export default function FilledButton ({
     value, disabled, onClick, styleOverrides: commonStyleOverrides, textStyleOverrides
-}: FilledButtonProps) => (
-    // TODO custom click animation
-    <TouchableOpacity
-        onPress={onClick}
-        disabled={disabled}
-        style={commonStyleOverrides}
-    >
-        <Text
-            style={{
-                ...TextsConstants.title,
-                backgroundColor: disabled ? ColorsConstants.red.light : ColorsConstants.red.normal,
-                color: ColorsConstants.white.normal,
-                textAlign: "center",
-                ...commonStyleOverrides,
-                ...textStyleOverrides,
-            }}
+}: FilledButtonProps) {
+    return (
+        // TODO custom click animation
+        <TouchableOpacity
+            onPress={onClick}
+            disabled={disabled}
+            style={commonStyleOverrides}
         >
-            {value}
-        </Text>
-    </TouchableOpacity>
-);
+            <Text
+                style={{
+                    ...TextsConstants.title,
+                    backgroundColor: disabled ? ColorsConstants.red.light : ColorsConstants.red.normal,
+                    color: ColorsConstants.white.normal,
+                    textAlign: "center",
+                    ...commonStyleOverrides,
+                    ...textStyleOverrides,
+                }}
+            >
+                {value}
+            </Text>
+        </TouchableOpacity>
+    );
+}
