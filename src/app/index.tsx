@@ -2,6 +2,7 @@ import { FilledButton } from "@/components/buttons";
 import { useLoadedFonts, useTimer } from "@/hooks";
 import { Text, View } from "react-native";
 import TimeDisplay from "./timeDisplay";
+import { Title } from "@/components/texts";
 
 export default function Index() {
     const fontsLoaded = useLoadedFonts();
@@ -33,7 +34,8 @@ export default function Index() {
                 <View
                     style= {{
                         display: "flex",
-                        flexDirection: "row"
+                        flexDirection: "row",
+                        alignItems: "center"
                     }}
                 >
                     <TimeDisplay
@@ -41,6 +43,14 @@ export default function Index() {
                         onPlusClick={addMinute}
                         onMinusClick={subMinute}
                         disabled={isTimerRunning}
+                    />
+                    
+                    <Title
+                        value=":"
+                        styleOverrides={{
+                            paddingHorizontal: 8,
+                            fontSize: 120
+                        }}
                     />
 
                     <TimeDisplay
