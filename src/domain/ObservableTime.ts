@@ -24,8 +24,8 @@ export default class ObservableTime extends Time {
     }
 
     // TODO optimize to notify only observables needed
-    override addTime(timeToAdd: number): void {
-        super.addTime(timeToAdd);
+    override addSeconds(timeToAdd: number): void {
+        super.addSeconds(timeToAdd);
 
         this.notifyMinutes();
         this.notifySeconds();

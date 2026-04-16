@@ -13,7 +13,7 @@ describe("Time validation", () => {
             // TODO specify error
             expect(() => new Time(plainTime)).toThrow();
         });
-    
+
         it.each([
             0,
             99,
@@ -31,7 +31,7 @@ describe("Time validation", () => {
         })
     })
 
-    describe("Operations", ()=> {
+    describe("Operations", () => {
         describe("Can add", () => {
             it.each([
                 0, 15, 367, MAX_TIME - 1
@@ -55,13 +55,13 @@ describe("Time validation", () => {
             ])("should return true if value is between 1 and 99 (%s)", (timeValue) => {
                 const time = new Time(timeValue);
 
-                expect(time.canSub()).toBe(true);
+                expect(time.canSubtract()).toBe(true);
             })
 
             it("should return false if value is on min limit of time", () => {
                 const time = new Time(0);
 
-                expect(time.canSub()).toBe(false);
+                expect(time.canSubtract()).toBe(false);
             })
 
         })
@@ -75,7 +75,7 @@ describe("Time visualization", () => {
                 return Time.formatTime(timeValue);
             }
         }
-    
+
         it.each([
             [0, "00"],
             [5, "05"],
@@ -83,7 +83,7 @@ describe("Time visualization", () => {
         ])("should add 0 if time is with one single digit (%s)", (timeValue, timeFormattedExpected) => {
             expect(TestableTimeFormatter.testableFormatTime(timeValue)).toBe(timeFormattedExpected);
         })
-        
+
         it.each([
             [10, "10"],
             [35, "35"],
@@ -107,6 +107,16 @@ describe("Time visualization", () => {
             expect(time.getSeconds()).toBe(secondsExpected);
         })
     })
+
+    describe("Entire time", () => {
+        it
+            .each([0,59,60,212,MAX_TIME])
+            ("should return seconds (%s)", (timeValue) => {
+                const time = new Time(timeValue);
+
+                expect(time.getEntireTimeInSeconds()).toBe(timeValue);
+            })
+    })
 })
 
 describe("Time operations", () => {
@@ -118,23 +128,35 @@ describe("Time operations", () => {
         ])("should throw error if number to add is Invalid (%s)", (timeToAdd) => {
             const time = new Time();
 
-            expect(time.addTime(timeToAdd)).toThrow();
+            expect(time.addSeconds(timeToAdd)).toThrow();
         });
 
         it.each([
-            [0, 10, "00", "10"],
-            [10, 0, "00", "10"],
-            [30, 45, "01", "15"],
-            [15, 180, "03", "15"],
-            [100, -10, "01", "30"],
-            [220, -40, "03", "00"],
-        ])("should add positive and negative time", (startTime, timeToAdd, minutesExpected, secondsExpected) => {
+            [0, 10, 10],
+            [10, 0, 10],
+            [30, 45, 75],
+            [15, 180, 195],
+            [100, -10, 90],
+            [220, -40, 180],
+        ])("should add positive and negative seconds", (startTime, timeToAdd, timeExpected) => {
             const time = new Time(startTime);
 
-            time.addTime(timeToAdd);
+            time.addSeconds(timeToAdd);
 
-            expect(time.getMinutes()).toBe(minutesExpected);
-            expect(time.getSeconds()).toBe(secondsExpected);
+            expect(time.getEntireTimeInSeconds()).toBe(timeExpected);
+        });
+
+        it.each([
+            [0, 10, 600],
+            [10, 0, 10],
+            [30, 15, 930],
+            [1800, -10, 1200],
+        ])("should add positive and negative minutes", (startTime, timeToAdd, timeExpected) => {
+            const time = new Time(startTime);
+
+            time.addMinutes(timeToAdd);
+
+            expect(time.getEntireTimeInSeconds()).toBe(timeExpected);
         });
 
         it.each([
@@ -144,24 +166,22 @@ describe("Time operations", () => {
         ])("should limit on MAX_TIME if will add more than this", (startTime, timeToAdd) => {
             const time = new Time(startTime);
 
-            time.addTime(timeToAdd);
+            time.addSeconds(timeToAdd);
 
-            expect(time.getMinutes()).toBe("59");
-            expect(time.getSeconds()).toBe("59");
+            expect(time.getEntireTimeInSeconds()).toBe(MAX_TIME);
         });
 
         it.each([
             [0, -1],
             [0, -MAX_TIME],
             [MAX_TIME, -MAX_TIME],
-            [MAX_TIME, -MAX_TIME-56],
+            [MAX_TIME, -MAX_TIME - 56],
         ])("should limit on 0 if will sub more than this", (startTime, timeToAdd) => {
             const time = new Time(startTime);
 
-            time.addTime(timeToAdd);
+            time.addSeconds(timeToAdd);
 
-            expect(time.getMinutes()).toBe("00");
-            expect(time.getSeconds()).toBe("00");
+            expect(time.getEntireTimeInSeconds()).toBe(0);
         });
     })
 })

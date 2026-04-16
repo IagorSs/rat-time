@@ -42,16 +42,20 @@ export default class Time {
         return this.timeInSeconds < MAX_TIME;
     }
 
-    public canSub(): boolean {
+    public canSubtract(): boolean {
         return this.timeInSeconds > 0;
     }
 
     // TODO some kind of validation in arg number
-    public addTime(timeToAdd: number): void {
+    public addSeconds(secondsToAdd: number): void {
         this.timeInSeconds = Math.max(
-            Math.min(this.timeInSeconds + timeToAdd, MAX_TIME),
+            Math.min(this.timeInSeconds + secondsToAdd, MAX_TIME),
             0
         )
+    }
+
+    public addMinutes(minutesToAdd: number): void {
+        this.addSeconds(minutesToAdd * 60);
     }
 
     public getEntireTimeInSeconds(): number {

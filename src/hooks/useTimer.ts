@@ -23,22 +23,22 @@ export default () => {
             if (time.getEntireTimeInSeconds() === 0) {
                 playBeep();
                 setIsTimerRunning(false);
-                time.addTime(timerToReset);
+                time.addSeconds(timerToReset);
             }
             else {
-                setTimeout(() => time.addTime(-1), 1000)
+                setTimeout(() => time.addSeconds(-1), 1000)
             }
         }
-    }, [minutes, seconds, isTimerRunning]);
+    }, [minutes, seconds, isTimerRunning, playBeep]);
 
     return {
         minutes,
         seconds,
         isTimerRunning,
-        addMinute: () => time.addTime(60),
-        subMinute: () => time.addTime(-60),
-        addSecond: () => time.addTime(1),
-        subSecond: () => time.addTime(-1),
+        addMinute: () => time.addMinutes(1),
+        subMinute: () => time.addMinutes(-1),
+        addSecond: () => time.addSeconds(1),
+        subSecond: () => time.addSeconds(-1),
         startTimer: () => {
             setIsTimerRunning(true);
             timerToReset = time.getEntireTimeInSeconds();
