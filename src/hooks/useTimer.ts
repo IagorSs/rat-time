@@ -1,4 +1,4 @@
-import { ObservableTime } from "@/classes";
+import { ObservableTime } from "@/domain";
 import { useEffect, useState } from "react";
 import useSingleBeep from "./useSingleBeep";
 

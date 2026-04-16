@@ -27,6 +27,7 @@ export default class Time {
         return Time.formatTime(this.timeInSeconds % 60);
     }
 
+    // TODO change this guy to TimeVisualizer or some like this, that will from 0 to 59
     /**
      * This utility will return time formatter as 2 digit string, use only to integer
      * values between 0 and 99.
