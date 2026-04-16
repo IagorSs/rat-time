@@ -4,23 +4,23 @@ type Observable<T> = (arg: T) => void
 
 // TODO test
 export default class ObservableTime extends Time {
-    private minutesSubs = new Set<Observable<string>>();
-    private secondsSubs = new Set<Observable<string>>();
+    private minutesSubscribers = new Set<Observable<string>>();
+    private secondsSubscribers = new Set<Observable<string>>();
 
     private notifyMinutes() {
-        this.minutesSubs.forEach(minutesSub => minutesSub(this.getMinutes()))
+        this.minutesSubscribers.forEach(minutesSub => minutesSub(this.getMinutes()))
     }
 
     private notifySeconds() {
-        this.secondsSubs.forEach(secondsSub => secondsSub(this.getSeconds()))
+        this.secondsSubscribers.forEach(secondsSub => secondsSub(this.getSeconds()))
     }
 
-    public addMinutesSub(minutesSub: Observable<string>) {
-        this.minutesSubs.add(minutesSub);
+    public addMinutesSubscriber(minutesSub: Observable<string>) {
+        this.minutesSubscribers.add(minutesSub);
     }
 
-    public addSecondsSub(secondsSub: Observable<string>) {
-        this.secondsSubs.add(secondsSub);
+    public addSecondsSubscribers(secondsSub: Observable<string>) {
+        this.secondsSubscribers.add(secondsSub);
     }
 
     // TODO optimize to notify only observables needed
