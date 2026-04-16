@@ -1,11 +1,17 @@
 import { Stack } from "expo-router";
+import Head from "expo-router/head";
 
 export default function RootLayout() {
     return (
-        <Stack
-            screenOptions={{
-                headerShown: false
-            }}
-        />
+        <>
+            <Head>
+                <title>Rat Time!</title>
+            </Head>
+            <Stack
+                screenOptions={{
+                    headerShown: false
+                }}
+            />
+        </>
     );
 }
