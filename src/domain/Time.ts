@@ -46,12 +46,17 @@ export default class Time {
         return this.timeInSeconds > 0;
     }
 
+    // TODO test
+    public setTime(timeInSeconds: number): void {
+        this.timeInSeconds = Math.max(
+            Math.min(timeInSeconds, MAX_TIME),
+            0
+        );
+    }
+
     // TODO some kind of validation in arg number
     public addSeconds(secondsToAdd: number): void {
-        this.timeInSeconds = Math.max(
-            Math.min(this.timeInSeconds + secondsToAdd, MAX_TIME),
-            0
-        )
+        this.setTime(this.timeInSeconds + secondsToAdd);
     }
 
     public addMinutes(minutesToAdd: number): void {

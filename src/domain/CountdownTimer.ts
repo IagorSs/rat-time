@@ -1,8 +1,9 @@
 import Time from "./Time";
 
-// TODO tests
+// TODO revisit tests
 export default class CountdownTimer {
     private timeConfigured: number = 0;
+    private startTime?: number;
 
     // TODO make customizable by strategy pattern
     private resetWhenFinish: boolean = true;
@@ -19,9 +20,9 @@ export default class CountdownTimer {
         this.onFinishCountdown = finishObserver;
     }
 
-    // FIXME probably with bug related to js async, check if time counted is right
     public runTimer(): void {
         this.timeConfigured = this.time.getEntireTimeInSeconds();
+        this.startTime = Date.now();
 
         this.countdownIntervalRef = setInterval(() => {
             this.makeCountdownStep();
@@ -29,9 +30,14 @@ export default class CountdownTimer {
     }
 
     private makeCountdownStep(): void {
-        this.time.addSeconds(-1);
+        const timeSinceTimerStarts = this.getTimeInSecondsSinceStart();
+        this.time.setTime(this.timeConfigured - timeSinceTimerStarts);
 
         if (this.time.getEntireTimeInSeconds() === 0) this.finishCountdown();
+    }
+
+    private getTimeInSecondsSinceStart(): number {
+        return Math.floor((Date.now() - this.startTime!) / 1_000);
     }
 
     private finishCountdown(): void {
